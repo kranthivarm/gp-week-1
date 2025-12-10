@@ -1,0 +1,2 @@
+# run every minute and append stdout+stderr to /cron/last_code.txt
+* * * * * cd /app && /usr/bin/python3 /app/scripts/log_2fa_cron.py >> /cron/last_code.txt 2>&1
