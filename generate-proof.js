@@ -9,11 +9,16 @@ const studentPrivateKey = fs.readFileSync("student_private.pem", "utf8");
 const instructorPublicKey = fs.readFileSync("instructor_public.pem", "utf8");
 
 // 3. Sign commit hash using RSA-PSS SHA-256
+//const signature = crypto.sign("sha256", Buffer.from(commitHash), {
+//  key: studentPrivateKey,
+//  padding: crypto.constants.RSA_PKCS1_PSS_PADDING,
+////  saltLength: crypto.constants.RSA_PSS_SALTLEN_MAX_SIGN
+//  saltLength: 32
+//});
 const signature = crypto.sign("sha256", Buffer.from(commitHash), {
   key: studentPrivateKey,
   padding: crypto.constants.RSA_PKCS1_PSS_PADDING,
-//  saltLength: crypto.constants.RSA_PSS_SALTLEN_MAX_SIGN
-  saltLength: 32
+  saltLength: crypto.constants.RSA_PSS_SALTLEN_MAX_SIGN  // ✅ CORRECT
 });
 
 // 4. Encrypt signature using RSA-OAEP SHA-256 + MGF1 SHA-256

@@ -1,2 +1,6 @@
 /mvnw text eol=lf
 *.cmd text eol=crlf
+# Force LF line endings for shell scripts and cron
+*.sh text eol=lf
+cron/2fa-cron text eol=lf
+scripts/*.py text eol=lf
