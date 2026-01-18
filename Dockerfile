@@ -38,7 +38,12 @@ COPY cron/2fa-cron /etc/cron.d/totp-cron
 COPY entrypoint.sh /app/entrypoint.sh
 
 # Permissions
-RUN chmod 644 /etc/cron.d/totp-cron && \
+#RUN chmod 644 /etc/cron.d/totp-cron && \
+#    chmod +x /app/scripts/log_2fa_cron.py && \
+#    chmod +x /app/entrypoint.sh && \
+#    crontab /etc/cron.d/totp-cron
+RUN chmod 0644 /etc/cron.d/totp-cron && \
+    echo "" >> /etc/cron.d/totp-cron && \
     chmod +x /app/scripts/log_2fa_cron.py && \
     chmod +x /app/entrypoint.sh && \
     crontab /etc/cron.d/totp-cron
